@@ -30,15 +30,36 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="manage.py" />
+    <Compile Include="posts\admin.py" />
+    <Compile Include="posts\apps.py" />
+    <Compile Include="posts\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="posts\migrations\__init__.py" />
+    <Compile Include="posts\models.py" />
+    <Compile Include="posts\tests.py" />
+    <Compile Include="posts\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="posts\views.py" />
+    <Compile Include="posts\__init__.py" />
     <Compile Include="TryDjango19\__init__.py" />
     <Compile Include="TryDjango19\settings.py" />
     <Compile Include="TryDjango19\urls.py" />
     <Compile Include="TryDjango19\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="posts\templates\index.html" />
     <Content Include="requirements.txt" />
+    <Content Include="templates\index.html" />
+    <Content Include="templates\post_detail.html" />
+    <Content Include="templates\post_form.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="templates\" />
+    <Folder Include="posts\" />
+    <Folder Include="posts\migrations\" />
+    <Folder Include="posts\templates\" />
     <Folder Include="TryDjango19\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />

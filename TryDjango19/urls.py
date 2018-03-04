@@ -5,7 +5,7 @@ Definition of urls for TryDjango19.
 from django.conf.urls import include, url
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
+from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = [
@@ -17,5 +17,6 @@ urlpatterns = [
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^posts/', include("posts.urls", namespace='posts')),
 ]
