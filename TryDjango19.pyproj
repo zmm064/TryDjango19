@@ -58,6 +58,8 @@
     <Content Include="templates\post_list.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="media\" />
+    <Folder Include="static\" />
     <Folder Include="templates\" />
     <Folder Include="posts\" />
     <Folder Include="posts\migrations\" />
