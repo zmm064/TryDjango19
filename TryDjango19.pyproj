@@ -51,9 +51,11 @@
   <ItemGroup>
     <Content Include="posts\templates\index.html" />
     <Content Include="requirements.txt" />
-    <Content Include="templates\index.html" />
+    <Content Include="templates\base.html" />
+    <Content Include="templates\messages_display.html" />
     <Content Include="templates\post_detail.html" />
     <Content Include="templates\post_form.html" />
+    <Content Include="templates\post_list.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="templates\" />

@@ -1,13 +1,12 @@
-﻿<html>
-    <head>
-        <title>Form</title>
-    </head>
-    <body>
+﻿{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
         <h1>Form</h1>
         <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Create Post" />
+        <input type="submit" class="btn btn-default" value="Create Post" />
         </form>
-    </body>
-</html>
+    </div>
+{% endblock content %}
