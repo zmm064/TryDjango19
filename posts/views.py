@@ -32,7 +32,7 @@ def post_list(request):
     if query:
         queryset_list = queryset_list.filter(title__icontains=query)
 
-    paginator = Paginator(queryset_list, 1)
+    paginator = Paginator(queryset_list, 3)
     page = request.GET.get("page")
     try:
         queryset = paginator.page(page)
@@ -60,8 +60,8 @@ def post_update(request, slug=None):
         instance = form.save(commit=False)
         instance.save()  # 更新实例对象
         messages.success(request, "更新已保存1")
-        messages.success(request, "更新已保存2")
-        messages.success(request, "更新已保存3")
+        #messages.success(request, "更新已保存2")
+        #messages.success(request, "更新已保存3")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     return render (request, 

@@ -12,7 +12,10 @@
     <img src="{{ instance.image.url }}" class="img-responsive" alt="Alternate Text" />
     {% endif %}
         <h1>{{ instance.title }} is working!
-            <small>{{ instance.timestamp }}</small><span style="color:red">Draft</span>
+            <small>{{ instance.timestamp }}</small>
+            {% if instance.draft %}
+            <span style="color:red">Draft</span>
+            {% endif %}
         </h1>
         <p>Author: {{ instance.user }}</p>
     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
@@ -29,7 +32,8 @@
     </a>
     </p>
     <hr />
-            {{ instance.content | linebreaks  }}<br />
+    <div class="content-markdown"> {{ instance.content }} </div>
+    <hr />
     <div class="fb-comments" data-href="{{ request.build_absolute_url }}" data-numposts="5"></div>
 </div>
 {% endblock content %}
