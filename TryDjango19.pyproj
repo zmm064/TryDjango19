@@ -55,8 +55,10 @@
     <Compile Include="TryDjango19\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="posts\static\css\base.css" />
     <Content Include="posts\templates\index.html" />
     <Content Include="requirements.txt" />
+    <Content Include="static\css\base.css" />
     <Content Include="templates\base.html" />
     <Content Include="templates\messages_display.html" />
     <Content Include="templates\post_detail.html" />
@@ -65,8 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="media\" />
+    <Folder Include="posts\static\" />
+    <Folder Include="posts\static\css\" />
     <Folder Include="posts\templatetags\" />
     <Folder Include="static\" />
+    <Folder Include="static\css\" />
     <Folder Include="templates\" />
     <Folder Include="posts\" />
     <Folder Include="posts\migrations\" />
