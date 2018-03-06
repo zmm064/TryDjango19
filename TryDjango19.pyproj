@@ -37,6 +37,12 @@
     </Compile>
     <Compile Include="posts\migrations\__init__.py" />
     <Compile Include="posts\models.py" />
+    <Compile Include="posts\templatetags\urlify.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="posts\templatetags\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="posts\tests.py" />
     <Compile Include="posts\urls.py">
       <SubType>Code</SubType>
@@ -59,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="media\" />
+    <Folder Include="posts\templatetags\" />
     <Folder Include="static\" />
     <Folder Include="templates\" />
     <Folder Include="posts\" />
