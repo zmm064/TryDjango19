@@ -48,7 +48,7 @@ def post_list(request):
 def post_detail(request, slug=None):
     instance     = get_object_or_404(Post, slug=slug)
     share_string = quote_plus(instance.content)
-    comments     = Comment.objects.filter(post=instance)
+    comments     = Comment.objects.filter(post=instance, parent=None)
     comment_form = CommentForm(request.POST or None)#, initial={"user":request.user, "post":instance})
 
     if comment_form.is_valid():
@@ -56,7 +56,12 @@ def post_detail(request, slug=None):
         comment_instance = comment_form.save(commit=False)
         comment_instance.user = request.user
         comment_instance.post = instance
+        try:
+            comment_instance.parent_id = int(request.POST.get("parent_id"))
+        except:
+            comment_instance.parent_id = None
         comment_instance.save()
+        return HttpResponseRedirect(comment_instance.post.get_absolute_url())
 
     return render (request, 
                    "post_detail.html", 

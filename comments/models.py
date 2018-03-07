@@ -10,6 +10,16 @@ class Comment(models.Model):
     post      = models.ForeignKey(Post)
     content   = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    parent    = models.ForeignKey("self", null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)
+
+    def children(self):
+        return Comment.objects.filter(parent=self)
+
+    @property
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True
