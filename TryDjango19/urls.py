@@ -20,6 +20,7 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^posts/', include("posts.urls", namespace='posts')),
+    url(r'^comments/', include("comments.urls", namespace='comments')),
 ]
 
 if settings.DEBUG:

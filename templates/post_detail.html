@@ -48,7 +48,14 @@
             <div class="">
                 <blockquote>
                 <p>{{ comment.content }}</p>
-                <footer>By {{ comment.user }} on {{ comment.timestamp|timesince }} ago</footer>
+                <footer>
+                    By {{ comment.user }} on {{ comment.timestamp|timesince }} ago 
+                    {{ comment.children.count }} comment{{ comment.children.count|pluralize }}
+                    <a href="#" class="comment-reply-btn">Reply</a>
+                    <a href="{{ comment.get_absolute_url }}" class="comment-reply-btn">Thread</a>
+                </footer>
+
+                <div class="comment-reply" style="display:none">
                     {% for child_comment in comment.children %}
                         <blockquote>
                             <p>{{ child_comment.content }}</p>
@@ -62,7 +69,7 @@
                         <input type="hidden" name="parent_id" value="{{ comment.id }}" />
                         <input type="submit" value="Reply" class="btn btn-default"/>
                     </form>
-
+                </div>
                 </blockquote>
                 <hr />
             </div>
