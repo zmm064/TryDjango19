@@ -5,6 +5,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
 # Create your views here.
+from comments.models import Comment
+from comments.forms import CommentForm
 from . models import Post
 from . forms import PostForm
 
@@ -44,11 +46,22 @@ def post_list(request):
     return render (request, "post_list.html", {"object_list":queryset, "title":"List"})
 
 def post_detail(request, slug=None):
-    instance = get_object_or_404(Post, slug=slug)
+    instance     = get_object_or_404(Post, slug=slug)
     share_string = quote_plus(instance.content)
+    comments     = Comment.objects.filter(post=instance)
+    comment_form = CommentForm(request.POST or None)#, initial={"user":request.user, "post":instance})
+
+    if comment_form.is_valid():
+        print(comment_form.cleaned_data)
+        comment_instance = comment_form.save(commit=False)
+        comment_instance.user = request.user
+        comment_instance.post = instance
+        comment_instance.save()
+
     return render (request, 
                    "post_detail.html", 
-                   {"instance":instance, "title":instance.title, "share_string": share_string})
+                   {"instance":instance, "title":instance.title, "share_string": share_string, 
+                    "comments":comments, "comment_form":comment_form})
 
 def post_update(request, slug=None):
     # 获取实例

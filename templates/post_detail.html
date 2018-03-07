@@ -1,5 +1,5 @@
 ﻿{% extends "base.html" %}
-{% load urlify %}
+{% load urlify %} {% load crispy_forms_tags %}
 {% block title %}{{ instance.title }} | {{ block.super }}{% endblock title %}
 {% block style %}
     h1 {
@@ -34,6 +34,27 @@
     <hr />
     <div class="content-markdown"> {{ instance.content }} </div>
     <hr />
+    {#<div>{{ instance.comment_set.all }}</div>#}
+    <div>
+        <p class="lead">Comments</p>
+
+        <form action="" method="POST">
+            {{ comment_form|crispy }}
+            {% csrf_token %}
+            <input type="submit" value="Post Comment" class="btn btn-default"/>
+        </form>
+
+        {% for comment in comments %}
+            <div class="">
+                <blockquote>
+                <p>{{ comment.content }}</p>
+                <footer>By {{ comment.user }} on {{ comment.timestamp|timesince }} ago</footer>
+                </blockquote>
+                <hr />
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="fb-comments" data-href="{{ request.build_absolute_url }}" data-numposts="5"></div>
 </div>
 {% endblock content %}
