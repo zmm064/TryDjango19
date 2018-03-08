@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^posts/', include("posts.urls", namespace='posts')),
     url(r'^comments/', include("comments.urls", namespace='comments')),
+    url(r'^account/', include("accounts.urls", namespace='account')),
 ]
 
 if settings.DEBUG:

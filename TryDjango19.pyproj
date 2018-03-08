@@ -29,6 +29,17 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="accounts\admin.py" />
+    <Compile Include="accounts\apps.py" />
+    <Compile Include="accounts\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="accounts\migrations\__init__.py" />
+    <Compile Include="accounts\models.py" />
+    <Compile Include="accounts\tests.py" />
+    <Compile Include="accounts\urls.py" />
+    <Compile Include="accounts\views.py" />
+    <Compile Include="accounts\__init__.py" />
     <Compile Include="comments\admin.py" />
     <Compile Include="comments\apps.py" />
     <Compile Include="comments\forms.py">
@@ -71,6 +82,7 @@
     <Compile Include="TryDjango19\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accounts\templates\index.html" />
     <Content Include="comments\templates\index.html" />
     <Content Include="posts\static\css\base.css" />
     <Content Include="posts\templates\index.html" />
@@ -81,10 +93,14 @@
     <Content Include="templates\confirm_delete.html" />
     <Content Include="templates\messages_display.html" />
     <Content Include="templates\post_detail.html" />
+    <Content Include="templates\form.html" />
     <Content Include="templates\post_form.html" />
     <Content Include="templates\post_list.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="accounts\" />
+    <Folder Include="accounts\migrations\" />
+    <Folder Include="accounts\templates\" />
     <Folder Include="comments\" />
     <Folder Include="comments\migrations\" />
     <Folder Include="comments\templates\" />
