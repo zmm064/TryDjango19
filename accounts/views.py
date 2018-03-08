@@ -7,12 +7,15 @@ from .forms import UserLoginForm, UserRegisterForm
 def login_view(request):
     title = "Login"
     form = UserLoginForm(request.POST or None)
+    next_page = request.GET.get('next')
     if form.is_valid():
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         # 只有通过这个返回的user才能实现登录功能
         user = authenticate(username=username, password=password)
         login(request, user)
+        if next_page:
+            return redirect(next_page)
         return redirect(reverse('posts:list'))
 
     return render(request, "form.html", {"form":form, "title":title})

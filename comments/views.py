@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Comment
 from .forms import CommentForm
 
 # Create your views here.
 
+@login_required(login_url='/account/login')
 def comment_delete(request, id):
     comment = get_object_or_404(Comment, id=id)
 

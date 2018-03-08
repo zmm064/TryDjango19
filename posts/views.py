@@ -51,7 +51,7 @@ def post_detail(request, slug=None):
     comments     = Comment.objects.filter(post=instance, parent=None)
     comment_form = CommentForm(request.POST or None)#, initial={"user":request.user, "post":instance})
 
-    if comment_form.is_valid():
+    if comment_form.is_valid() and request.user.is_authenticated():
         print(comment_form.cleaned_data)
         comment_instance = comment_form.save(commit=False)
         comment_instance.user = request.user

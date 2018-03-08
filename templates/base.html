@@ -28,6 +28,19 @@
     {% include "messages_display.html" %}
 
     <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="">Home</a></li>
+            <li><a href="{% url 'posts:list' %}">Posts</a></li>
+            {% if not request.user.is_authenticated %}
+            <li class="pull-right"><a href="{% url 'account:register' %}" >Register</a></li>
+            <li class="pull-right"><a href="{% url 'account:login' %}">Login</a></li>
+            {% else %}
+            <li class="pull-right"><a href="{% url 'account:logout' %}">Logout</a></li>
+            {% endif %}
+        </ol>
+    </div>
+
+    <div class="container">
         {% block content %}
         {% endblock content %}
     </div>
