@@ -17,6 +17,7 @@
             <span style="color:red">Draft</span>
             {% endif %}
         </h1>
+    <p>Read time: {{ instance.read_time|time:"i" }} minutes</p>
         <p>Author: {{ instance.user }}</p>
     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
     <p>

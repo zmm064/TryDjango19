@@ -60,6 +60,9 @@
     <Compile Include="posts\urls.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="posts\utils.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="posts\views.py" />
     <Compile Include="posts\__init__.py" />
     <Compile Include="TryDjango19\__init__.py" />
