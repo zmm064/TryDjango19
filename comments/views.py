@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.contrib import messages
 
 from .models import Comment
@@ -9,11 +9,21 @@ from .forms import CommentForm
 
 def comment_delete(request, id):
     comment = get_object_or_404(Comment, id=id)
+
+    if comment.user != request.user:
+        #raise Http404
+        response = HttpResponse("无权限访问")
+        response.status_code = 403
+        return response
     if request.method == "POST":
-        parent_url = comment.post.get_absolute_url()
+        if comment.is_parent:
+            parent_url = comment.post.get_absolute_url()
+        else:
+            parent_url = comment.parent.get_absolute_url()
         comment.delete()
         messages.success(request, "This has been deleted")
         return HttpResponseRedirect(parent_url)
+
 
     return render(request, "confirm_delete.html", {"object":comment})
 
