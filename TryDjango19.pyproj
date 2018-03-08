@@ -78,6 +78,7 @@
     <Content Include="static\css\base.css" />
     <Content Include="templates\base.html" />
     <Content Include="templates\comment_thread.html" />
+    <Content Include="templates\confirm_delete.html" />
     <Content Include="templates\messages_display.html" />
     <Content Include="templates\post_detail.html" />
     <Content Include="templates\post_form.html" />
