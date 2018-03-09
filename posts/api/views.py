@@ -2,10 +2,10 @@ from rest_framework.generics import (
     ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView,
     CreateAPIView, RetrieveUpdateAPIView,
     )
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
-
-from posts.models import Post
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+from posts.models import Post
+from .pagination import PostLimitOffsetPagination, PostPageNumberPagination
 from .serializers import PostListSerializer, PostDetailSerializer, PostCeateSerializer
 from .permissions import IsOwnerOrReadOnly
 
@@ -15,6 +15,8 @@ class PostListAPIView(ListAPIView):
     filter_backends = [SearchFilter,    # 通过search查询过滤
                        OrderingFilter]  # 通过ordering查询过滤
     search_fields = ['title', 'content', 'user__first_name']
+    # pagination_class = PostLimitOffsetPagination  # 通过limit和offset过滤
+    pagination_class = PostPageNumberPagination  # 通过limit和offset过滤
 
     def get_queryset(self, *args, **kwargs):
         queryset_list = Post.objects.all()
@@ -37,14 +39,16 @@ class PostUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = PostDetailSerializer
     lookup_field = 'slug'
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticatedOrReadOnly]
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
 
 class PostDeleteAPIView(DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
     lookup_field = 'slug'
+    permission_classes = [IsOwnerOrReadOnly, IsAuthenticatedOrReadOnly]
     # 将user从创建者变为更变者
-    def perform_update(self, serializer):
-        serializer.save(user=self.request.user)
+    
 
 class PostDetailAPIView(RetrieveAPIView):
     queryset = Post.objects.all()
