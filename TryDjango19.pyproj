@@ -55,6 +55,16 @@
     <Compile Include="comments\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="posts\admin.py" />
+    <Compile Include="posts\api\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="posts\api\urls.py" />
+    <Compile Include="posts\api\views.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="posts\api\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="posts\apps.py" />
     <Compile Include="posts\forms.py">
       <SubType>Code</SubType>
@@ -105,6 +115,7 @@
     <Folder Include="comments\migrations\" />
     <Folder Include="comments\templates\" />
     <Folder Include="media\" />
+    <Folder Include="posts\api\" />
     <Folder Include="posts\static\" />
     <Folder Include="posts\static\css\" />
     <Folder Include="posts\templatetags\" />

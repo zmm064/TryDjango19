@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^posts/', include("posts.urls", namespace='posts')),
     url(r'^comments/', include("comments.urls", namespace='comments')),
     url(r'^account/', include("accounts.urls", namespace='account')),
+    url(r'^api/posts/', include("posts.api.urls", namespace='posts-api'))
 ]
 
 if settings.DEBUG:
